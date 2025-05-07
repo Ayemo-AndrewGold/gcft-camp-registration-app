@@ -1,17 +1,15 @@
 const roomMap = {
-  "Hall A": ["1A", "1B", "2A", "2B"],
-  "Hall B": ["1C", "1D"],
-  "Hall C": ["3A", "3B", "3C"],
-  "Hall D": ["4A", "4B", "4C"],
-  "Hall E": ["5A", "5B", "5C"]
+  "WILLIAM BRANHAM HOSTEL": ["1A", "1B", "2A", "2B"],
+  "EVANGELIST BEN HOSTEL": ["1C", "1D"],
+  "ELIZABETH BILLY HOSTEL": ["3A", "3B", "3C"],
+  "BETHLEHEM HOSTEL": ["4A", "4B", "4C"]
 };
 
 const assignedRooms = {
-  "Hall A": [],
-  "Hall B": [],
-  "Hall C": [],
-  "Hall D": [],
-  "Hall E": []
+  "WILLIAM BRANHAM HOSTEL": [],
+  "EVANGELIST BEN HOSTEL": [],
+  "ELIZABETH BILLY HOSTEL": [],
+  "BETHLEHEM HOSTEL": []
 };
 
 document.getElementById("registrationForm").addEventListener("submit", function(e) {
@@ -24,18 +22,18 @@ document.getElementById("registrationForm").addEventListener("submit", function(
   const gender = document.getElementById("gender").value;
   const arrivalDate = document.getElementById("arrivalDate").value;
 
-  let hall = "Hall E";
+  let hostel = "BETHLEHEM HOSTEL";
 
-  if (isMother) hall = "Hall A";
-  else if (role === "Elder") hall = "Hall B";
-  else if (marital === "Single" && gender === "Male") hall = "Hall C";
-  else if (marital === "Single" && gender === "Female") hall = "Hall D";
+  if (isMother) hostel = "ELIZABETH BILLY HOSTEL";
+  else if (role === "Elder") hostel = "WILLIAM BRANHAM HOSTEL";
+  else if (marital === "Single" && gender === "Male") hostel = "EVANGELIST BEN HOSTEL";
+  else if (marital === "Single" && gender === "Female") hostel = "ELIZABETH BILLY HOSTEL";
 
-  let availableRooms = roomMap[hall].filter(r => !assignedRooms[hall].includes(r));
+  let availableRooms = roomMap[hostel].filter(r => !assignedRooms[hostel].includes(r));
   let room = availableRooms[0] || "No rooms available";
 
   if (room !== "No rooms available") {
-    assignedRooms[hall].push(room);
+    assignedRooms[hostel].push(room);
   }
 
   const ticketDiv = document.getElementById("ticket");
@@ -43,7 +41,7 @@ document.getElementById("registrationForm").addEventListener("submit", function(
   ticketDiv.innerHTML = `
     <h3>Registration Successful!</h3>
     <p><strong>Name:</strong> ${name}</p>
-    <p><strong>Hall:</strong> ${hall}</p>
+    <p><strong>Hall:</strong> ${hostel}</p>
     <p><strong>Room Number:</strong> ${room}</p>
     <p><strong>Arrival Date:</strong> ${arrivalDate}</p>
   `;
